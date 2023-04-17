@@ -1,0 +1,76 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+:root {
+  --spanColor: #a1ff84;
+  --bodyBckg: #c2c2c2;
+  /* d8d8d8 */
+  --headerBckg: #378130;
+  --headerTextColor: #d8d8d8;
+  --formTextColor: #474747;
+
+  --inputBorderColor: #999;
+}
+
+/* COLOR STYLING */
+span {
+  color: var(--spanColor);
+}
+
+body {
+  font-size: 1.1rem;
+  color: var(--textColor);
+  background-color: var(--bodyBckg);
+}
+
+header {
+  font-style: italic;
+  font-size: 1.2rem;
+  text-align: center;
+  color: var(--headerTextColor);
+  background-color: var(--headerBckg);
+  padding: 0.8rem 0;
+}
+
+main {
+  margin-top: 3rem;
+}
+
+/* FORM STYLING */
+form {
+  display: flex;
+  justify-content: center;
+}
+form div {
+  display: flex;
+  flex-direction: column;
+  margin: 0 1.4rem;
+}
+form label {
+  color: var(--formTextColor);
+  text-align: center;
+}
+
+form input {
+  padding: 0.2rem 1rem;
+  border-radius: 11px;
+  outline: none;
+  border: solid 1px var(--inputBorderColor);
+}
+#submitBtn {
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  padding: 0.3rem 1rem;
+  border-radius: 11px;
+  border: none;
+  font-weight: 500;
+  color: var(--headerTextColor);
+  background-color: var(--headerBckg);
+}
+#submitBtn:hover {
+  cursor: pointer;
+}

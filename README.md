@@ -1,1 +1,1 @@
-# myemptor-app
+# myEmptor App
