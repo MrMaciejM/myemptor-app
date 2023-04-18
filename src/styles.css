@@ -7,18 +7,27 @@
 
 :root {
   --spanColor: #a1ff84;
-  --bodyBckg: #c2c2c2;
-  /* d8d8d8 */
+
+  --bodyBckg: #c2c2c2; /* d8d8d8 */
+
   --headerBckg: #378130;
   --headerTextColor: #d8d8d8;
-  --formTextColor: #474747;
 
+  --formTextColor: #474747;
   --inputBorderColor: #999;
+  --addSubmittedBckg: #24541f;
 }
 
 /* COLOR STYLING */
 span {
   color: var(--spanColor);
+}
+
+/* ********* */
+/* TEXT COLOR STYLING */
+select,
+input {
+  color: var(--formTextColor);
 }
 
 body {
@@ -42,13 +51,19 @@ main {
 
 /* FORM STYLING */
 form {
-  display: flex;
+  /* display: flex; */
+  display: grid;
   justify-content: center;
+  /* flex-wrap: wrap; */
+  grid-template-columns: repeat(5, 1fr);
+}
+form div:last-child {
+  grid-column: 3;
 }
 form div {
   display: flex;
   flex-direction: column;
-  margin: 0 1.4rem;
+  margin: 0.8rem 1.4rem;
 }
 form label {
   color: var(--formTextColor);
@@ -57,14 +72,26 @@ form label {
 
 form input {
   padding: 0.2rem 1rem;
-  border-radius: 11px;
   outline: none;
+}
+
+select {
+  border: none;
+  outline: none;
+  padding: 0.16rem 0;
+}
+
+/* BORDERS STYLING */
+form input,
+select,
+.displayRow {
   border: solid 1px var(--inputBorderColor);
+  border-radius: 11px;
 }
 #submitBtn {
   font-size: 1.1rem;
   margin-top: 1rem;
-  padding: 0.3rem 1rem;
+  padding: 0.2rem 1rem;
   border-radius: 11px;
   border: none;
   font-weight: 500;
@@ -73,4 +100,16 @@ form input {
 }
 #submitBtn:hover {
   cursor: pointer;
+}
+
+#submitBtn:active {
+  cursor: pointer;
+  background-color: var(--addSubmittedBckg);
+}
+
+/* CLIENT DATA ROWS STYLING */
+.displayRow {
+  background-color: var(--inputBorderColor);
+  padding: 0.3rem;
+  margin: 2rem 1rem;
 }

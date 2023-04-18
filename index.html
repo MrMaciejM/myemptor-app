@@ -14,32 +14,96 @@
     </header>
     <main>
       <section>
-        <form>
+        <form id="form">
           <div>
             <label for="name">Name</label>
-            <input id="name" type="text " />
+            <input id="name" type="text" required />
           </div>
 
           <div>
             <label for="surname">Surname</label>
-            <input id="surname" type="text " />
+            <input id="surname" type="text" />
           </div>
 
           <div>
             <label for="phone">Phone</label>
-            <input id="phone" type="text " />
+            <input id="phone" type="number" />
           </div>
 
           <div>
             <label for="email">Email</label>
-            <input id="email" type="text " />
+            <input id="email" type="email" />
           </div>
 
+          <div>
+            <label for="appSubmission">Application Date</label>
+            <input id="appSubmission" type="date" />
+          </div>
+
+          <div>
+            <label for="choice">Choice</label>
+            <input id="choice" type="text" />
+          </div>
+
+          <div>
+            <label for="startDate">Start Date</label>
+            <input id="startDate" type="date" />
+          </div>
+
+          <div>
+            <label for="currentStatus">Current Status</label>
+            <!-- <input id="currentStatus" type="text" /> -->
+            <select name="currentStatus" id="currentStatus">
+              <option value="active">Active</option>
+              <option value="notActive">Not Active</option>
+              <option value="notApplicable">N/A</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="bank">Bank</label>
+            <input id="bank" type="text" />
+          </div>
+
+          <div>
+            <label for="sum">Sum</label>
+            <input id="sum" type="number" />
+          </div>
+
+          <div>
+            <label for="rate">Rate Expander100 %</label>
+            <input id="rate" type="number" />
+          </div>
+
+          <div>
+            <label for="firmIncome">Firm Income</label>
+            <input id="firmIncome" type="number" />
+          </div>
+
+          <div>
+            <label for="myPayment">My Payment</label>
+            <input id="myPayment" type="number" />
+          </div>
+
+          <div>
+            <label for="myNotes">My Notes</label>
+            <input id="myNotes" type="text" />
+          </div>
+
+          <div>
+            <label for="summaryActivation">Summary Activation</label>
+            <input id="summaryActivation" type="text" />
+          </div>
+
+          <!-- Submit Button -->
           <div>
             <button id="submitBtn" type="submit">Add</button>
           </div>
         </form>
       </section>
+
+      <!-- DISPLAY CLIENT DATA -->
+      <section id="displayDataSection"></section>
     </main>
   </body>
 </html>
