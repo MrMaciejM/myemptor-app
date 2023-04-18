@@ -28,7 +28,7 @@ function displayClientData() {
         <p>Current Status</p>
         <p>Bank</p>
         <p>Sum</p>
-        <p>Rate Expander100 %</p>
+        <p>Rate Exp100 %</p>
         <p>Firm Income</p>
         <p>My Payment</p>
         <p>My Notes</p>

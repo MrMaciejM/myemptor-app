@@ -109,7 +109,7 @@ select,
 
 /* HEADING 2 */
 h2 {
-  margin-left: 1.4rem;
+  margin-left: 1.7rem;
   color: var(--addSubmittedBckg);
   margin-top: 2rem;
 }
@@ -118,7 +118,7 @@ h2 {
 .displayRowHeadings {
   display: flex;
   justify-content: space-around;
-  column-gap: 1rem;
+  column-gap: 3rem;
   margin: 0 1.3rem;
   margin-top: 2rem;
 }
@@ -128,10 +128,13 @@ h2 {
   justify-content: space-between;
   background-color: var(--inputBorderColor);
   padding: 0.3rem;
-  margin: 2rem 0.2rem;
+  margin: 2rem 0.5rem;
 }
 .displayRow p:first-of-type {
-  margin-left: 1rem;
+  margin-left: 0rem;
+}
+.displayRow p:last-of-type {
+  margin-right: 1rem;
 }
 .displayRow p {
   border: solid 1px green;
@@ -140,4 +143,9 @@ h2 {
 .displayRow p {
   word-wrap: break-word;
   width: 5%;
+}
+
+/* ADJUSTING RENDERED DATA FIELDS */
+.displayRow p:nth-child(1) {
+    width: 4%;
 }
