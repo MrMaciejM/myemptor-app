@@ -5,6 +5,7 @@ const inpSurname = document.getElementById("surname") as HTMLInputElement;
 const deleteAllBtn = document.getElementById("deleteAllBtn") as HTMLButtonElement;
 const deleteBtnYes = document.getElementById("deleteBtnYes") as HTMLButtonElement;
 const deleteBtnNo = document.getElementById("deleteBtnNo") as HTMLButtonElement;
+const clearFieldsBtn = document.getElementById("clearBtn") as HTMLButtonElement;
 
 const deleteModal = document.getElementById("deleteModal") as HTMLElement;
 const modalCloseBtn = document.getElementById("modalCloseBtn") as HTMLParagraphElement;
@@ -66,7 +67,8 @@ form?.addEventListener("submit", (e) => {
 function hideModal() {
     deleteModal.classList.add("hide"); 
 }
-// DELETE ALL FUNCTIONALITY
+
+// 3. DELETE ALL FUNCTIONALITY
 // Bring up the modal on Delete All click
 deleteAllBtn.addEventListener("click", (e) => {
     deleteModal.classList.remove("hide");    
@@ -87,4 +89,23 @@ deleteBtnNo.addEventListener("click", (e) => {
     hideModal();
 })
 
+// 4. CLEAR FIELDS FUNCTIONALITY
+clearFieldsBtn.addEventListener("click", (e) => {
+    const inputFields = document.querySelectorAll("input"); 
+    console.log(inputFields.length);
+    inputFields.forEach(field => {
+        field.value = "";
+    })
+})
 
+
+// TEST FETCH CALL 
+
+// ADD "f" to beginning of API key to make it work
+// I disabled it so I don't run out of calls for the demo
+const apiKey = "277792558525d895e036ffce5c0fef3"
+// fetch(`http://api.marketstack.com/v1/eod?access_key=${apiKey}&symbols=AAPL&limit=1`)
+// .then(response => response.json())
+// .then(data => console.log(data))
+// .catch(error => console.error(error));
+// NOTE: most likely will scratch the fetch stock idea because of relevancy, though it is still TBC. 
