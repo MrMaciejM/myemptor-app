@@ -16,6 +16,16 @@
   --formTextColor: #474747;
   --inputBorderColor: #999;
   --addSubmittedBckg: #24541f;
+
+  --clearFieldsBtnBckg: #777777;
+  --clearFieldsBtnBckgActive: #525252;
+  --deleteBtnBckg: #ac0808;
+  --deleteBtnBckgActive: #840707;
+}
+
+/***** HELPER CLASSES *****/
+.hide {
+  display: none;
 }
 
 /* COLOR STYLING */
@@ -112,6 +122,18 @@ select,
   background-color: var(--addSubmittedBckg);
 }
 
+#clearBtn {
+  background-color: var(--clearFieldsBtnBckg);
+}
+#clearBtn:active {
+  background-color: var(--clearFieldsBtnBckgActive);
+}
+#deleteAllBtn {
+  background-color: var(--deleteBtnBckg);
+}
+#deleteAllBtn:active {
+  background-color: var(--deleteBtnBckgActive);
+}
 /* HEADING 2 */
 h2 {
   margin-left: 1.7rem;
@@ -224,3 +246,53 @@ h2 {
   margin-left: 2.5rem;
   width: 5%;
 }
+
+/* MODAL STYLING */
+#deleteModal {
+  position: absolute;
+  background-color: white;
+  left: 37%;
+  bottom: 40%;
+  padding: 5rem;
+  border: solid 2px #777;
+  border-radius: 9px;
+}
+#deleteModal p:first-child {
+  position: relative;
+  left: 110%;
+  bottom: 4rem;
+  background-color: #414141;
+  color: white;
+  width: 7.8%;
+  padding: 0.2rem 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+#deleteModal button {
+  padding: 0.5rem 1rem;
+  margin: 0 4rem;
+  margin-top: 2rem;
+  border: none;
+  font-weight: 600;
+  border-radius: 11px;
+}
+#deleteModal button:hover {
+  cursor: pointer;
+}
+#deleteBtnYes {
+  color: white;
+  background-color: red;
+}
+#deleteBtnNo {
+  color: white;
+  background-color: #4484f2;
+}
+/* 
+<div id="deleteBtnModal">
+        <p>X</p>
+        <p>Are you sure you want to delete all client data?</p>
+        <p>This action cannot be reversed!</p>
+        <button id="deleteBtnYes">YES</button>
+        <button id="deleteBtnNo">NO</button>
+      </div>
+*/

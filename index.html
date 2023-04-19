@@ -96,7 +96,7 @@
           </div>
 
           <div>
-            <button id="clearBtn" type="submit">Clear Fields</button>
+            <button id="clearBtn" type="button">Clear Fields</button>
           </div>
           <!-- Submit Button -->
           <div>
@@ -104,14 +104,40 @@
           </div>
           <!-- DELETE ALL -->
           <div>
-            <button id="deleteAllBtn" type="submit">Delete All</button>
+            <button id="deleteAllBtn" type="button">Delete All</button>
           </div>
         </form>
       </section>
 
-      <!-- DISPLAY CLIENT DATA -->
+      <!-- DISPLAY CLIENT HEADINGS -->
       <h2>My Clients</h2>
-      <section id="displayDataSection"></section>
+      <section id="displayDataSection">
+        <div class="displayRowHeadings">
+          <p>Name</p>
+          <p>Surname</p>
+          <p>Phone</p>
+          <p>Email</p>
+          <p>Application Date</p>
+          <p>Choice</p>
+          <p>Start Date</p>
+          <p>Current Status</p>
+          <p>Bank</p>
+          <p>Sum</p>
+          <p>Rate Exp100 %</p>
+          <p>Firm Income</p>
+          <p>My Payment</p>
+          <p>My Notes</p>
+          <p>Summary Acti.</p>
+        </div>
+      </section>
+      <!-- MODAL FOR DELETE BUTTON -->
+      <div id="deleteModal" class="hide">
+        <p id="modalCloseBtn">X</p>
+        <p>Are you sure you want to delete all client data?</p>
+        <p>This action cannot be reversed!</p>
+        <button id="deleteBtnYes">YES</button>
+        <button id="deleteBtnNo">NO</button>
+      </div>
     </main>
   </body>
 </html>

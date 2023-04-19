@@ -2,6 +2,13 @@ const form = document.getElementById("form") as HTMLFormElement;
 const inpName = document.getElementById("name") as HTMLInputElement;
 const inpSurname = document.getElementById("surname") as HTMLInputElement;
 
+const deleteAllBtn = document.getElementById("deleteAllBtn") as HTMLButtonElement;
+const deleteBtnYes = document.getElementById("deleteBtnYes") as HTMLButtonElement;
+const deleteBtnNo = document.getElementById("deleteBtnNo") as HTMLButtonElement;
+
+const deleteModal = document.getElementById("deleteModal") as HTMLElement;
+const modalCloseBtn = document.getElementById("modalCloseBtn") as HTMLParagraphElement;
+
 const displayData = document.getElementById("displayDataSection") as HTMLElement;
 
 // 1. Create LocalStorage if none exist for the app
@@ -15,28 +22,9 @@ console.log(getStorage);
 // 2. Display saved information 
 function displayClientData() {
     console.log(getStorage.length);
-    displayData.insertAdjacentHTML("beforeend", `
-        <div class="displayRowHeadings">
-        <p>Name</p>
-        <p>Surname</p>
-        <p>Phone</p>
-        <p>Email</p>
-        <p>Application Date</p>
-        <p>Choice</p>
-        <p>Start Date</p>
-        <p>Current Status</p>
-        <p>Bank</p>
-        <p>Sum</p>
-        <p>Rate Exp100 %</p>
-        <p>Firm Income</p>
-        <p>My Payment</p>
-        <p>My Notes</p>
-        <p>Summary Acti.</p>
-        </div>`)
-
     for(let i = 0; i < getStorage.length; i++) {
         displayData.insertAdjacentHTML("afterend", `
-        <div class="displayRow">
+        <div class="displayRow" id="displayRow">
         <p>${getStorage[i].Name}</p>            
         <p>${getStorage[i].Surname}</p>            
         <p>${getStorage[i].Phone}</p>            
@@ -72,6 +60,31 @@ form?.addEventListener("submit", (e) => {
     
     // display the 
 
+})
+
+
+function hideModal() {
+    deleteModal.classList.add("hide"); 
+}
+// DELETE ALL FUNCTIONALITY
+// Bring up the modal on Delete All click
+deleteAllBtn.addEventListener("click", (e) => {
+    deleteModal.classList.remove("hide");    
+})
+// Close Modal on clicking X
+modalCloseBtn.addEventListener("click", (e) => { 
+    hideModal();
+})
+// Wipe ALL Data
+deleteBtnYes.addEventListener("click", (e) => {
+    localStorage.setItem("myEmptor", JSON.stringify([]))
+    const displayRow = document.getElementById("displayRow");
+    displayRow?.remove();
+    hideModal();
+})
+// Select "No" option
+deleteBtnNo.addEventListener("click", (e) => {
+    hideModal();
 })
 
 
