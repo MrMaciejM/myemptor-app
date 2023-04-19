@@ -57,8 +57,8 @@ form {
   /* flex-wrap: wrap; */
   grid-template-columns: repeat(5, 1fr);
 }
-form div:last-child {
-  grid-column: 3;
+form div:nth-child(16) {
+  grid-column: 2;
 }
 form div {
   display: flex;
@@ -88,7 +88,10 @@ select,
   border: solid 1px var(--inputBorderColor);
   border-radius: 11px;
 }
-#submitBtn {
+/* BUTTONS STYLING */
+#submitBtn,
+#deleteAllBtn,
+#clearBtn {
   font-size: 1.1rem;
   margin-top: 1rem;
   padding: 0.2rem 1rem;
@@ -98,7 +101,9 @@ select,
   color: var(--headerTextColor);
   background-color: var(--headerBckg);
 }
-#submitBtn:hover {
+#submitBtn:hover,
+#deleteAllBtn:hover,
+#clearBtn:hover {
   cursor: pointer;
 }
 
@@ -125,7 +130,7 @@ h2 {
 
 .displayRow {
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   background-color: var(--inputBorderColor);
   padding: 0.3rem;
   margin: 2rem 0.5rem;
@@ -136,16 +141,86 @@ h2 {
 .displayRow p:last-of-type {
   margin-right: 1rem;
 }
+
 .displayRow p {
+  font-size: 1rem;
+  word-wrap: break-word;
   border: solid 1px green;
 }
 
-.displayRow p {
-  word-wrap: break-word;
+/* ADJUSTING RENDERED DATA FIELDS */
+/* Name */
+.displayRow p:nth-child(1) {
+  width: 4%;
+}
+/* Surname */
+.displayRow p:nth-child(2) {
+  margin-left: 1.5rem;
+  width: 4.4%;
+}
+/* Phone */
+.displayRow p:nth-child(3) {
+  margin-left: 1.2rem;
   width: 5%;
 }
-
-/* ADJUSTING RENDERED DATA FIELDS */
-.displayRow p:nth-child(1) {
-    width: 4%;
+/* Email */
+.displayRow p:nth-child(4) {
+  margin-left: 0.8rem;
+  width: 5%;
+}
+/* Application Date */
+.displayRow p:nth-child(5) {
+  margin-left: 2.2rem;
+  width: 5%;
+}
+/* Choice */
+.displayRow p:nth-child(6) {
+  margin-left: 3.8rem;
+  width: 6%;
+}
+/* Start Date */
+.displayRow p:nth-child(7) {
+  margin-left: 1.2rem;
+  width: 5%;
+}
+/* Current Status */
+.displayRow p:nth-child(8) {
+  margin-left: 3.3rem;
+  width: 4.5%;
+}
+/* Bank */
+.displayRow p:nth-child(9) {
+  margin-left: 3rem;
+  width: 4.5%;
+}
+/* Sum */
+.displayRow p:nth-child(10) {
+  margin-left: 1.5rem;
+  width: 4%;
+}
+/* Rate Exp100 % */
+.displayRow p:nth-child(11) {
+  margin-left: 2.5rem;
+  width: 4%;
+  text-align: center;
+}
+/* Firm Income */
+.displayRow p:nth-child(12) {
+  margin-left: 5.5rem;
+  width: 4%;
+}
+/* My Payment */
+.displayRow p:nth-child(13) {
+  margin-left: 4.5rem;
+  width: 4%;
+}
+/* My Notes */
+.displayRow p:nth-child(14) {
+  margin-left: 3.8rem;
+  width: 6%;
+}
+/* My Notes */
+.displayRow p:nth-child(15) {
+  margin-left: 2.5rem;
+  width: 5%;
 }

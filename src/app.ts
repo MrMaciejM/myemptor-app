@@ -12,7 +12,6 @@ if (!getStorage) {
 console.log("Storage");
 console.log(getStorage);
 
-
 // 2. Display saved information 
 function displayClientData() {
     console.log(getStorage.length);
@@ -48,7 +47,9 @@ function displayClientData() {
         <p>${getStorage[i].CurrStatus}</p>            
         <p>${getStorage[i].Bank}</p>            
         <p>${getStorage[i].Sum}</p>            
+        <p>${getStorage[i].RateExp}</p>            
         <p>${getStorage[i].FirmIncome}</p>            
+        <p>${getStorage[i].MyPayment}</p>            
         <p>${getStorage[i].MyNotes}</p>            
         <p>${getStorage[i].SummaryActi}</p>
         </div>
