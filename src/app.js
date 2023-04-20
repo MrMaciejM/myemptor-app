@@ -1,6 +1,7 @@
 var form = document.getElementById("form");
 var inpName = document.getElementById("name");
 var inpSurname = document.getElementById("surname");
+var inputFields = document.querySelectorAll("input, select");
 var deleteAllBtn = document.getElementById("deleteAllBtn");
 var deleteBtnYes = document.getElementById("deleteBtnYes");
 var deleteBtnNo = document.getElementById("deleteBtnNo");
@@ -13,26 +14,30 @@ var getStorage = JSON.parse(localStorage.getItem("myEmptor"));
 if (!getStorage) {
     localStorage.setItem("myEmptor", JSON.stringify([]));
 }
-console.log("Storage");
-console.log(getStorage);
 // 2. Display saved information 
 function displayClientData() {
-    console.log(getStorage.length);
-    for (var i = 0; i < getStorage.length; i++) {
-        displayData.insertAdjacentHTML("afterend", "\n        <div class=\"displayRow\" id=\"displayRow\">\n        <p>".concat(getStorage[i].Name, "</p>            \n        <p>").concat(getStorage[i].Surname, "</p>            \n        <p>").concat(getStorage[i].Phone, "</p>            \n        <p>").concat(getStorage[i].Email, "</p>            \n        <p>").concat(getStorage[i].AppDate, "</p>            \n        <p>").concat(getStorage[i].Choice, "</p>            \n        <p>").concat(getStorage[i].StartDate, "</p>            \n        <p>").concat(getStorage[i].CurrStatus, "</p>            \n        <p>").concat(getStorage[i].Bank, "</p>            \n        <p>").concat(getStorage[i].Sum, "</p>            \n        <p>").concat(getStorage[i].RateExp, "</p>            \n        <p>").concat(getStorage[i].FirmIncome, "</p>            \n        <p>").concat(getStorage[i].MyPayment, "</p>            \n        <p>").concat(getStorage[i].MyNotes, "</p>            \n        <p>").concat(getStorage[i].SummaryActi, "</p>\n        </div>\n        "));
-    }
+    var displayRows = document.querySelectorAll(".displayRow");
+    displayRows.forEach(function (row) { return row.remove(); });
+    getStorage.map(function (item) {
+        displayData.insertAdjacentHTML("beforeend", "\n            <div class=\"displayRow\">\n            <p>".concat(item.Name, "</p>            \n            <p>").concat(item.Surname, "</p>            \n            <p>").concat(item.Phone, "</p>            \n            <p>").concat(item.Email, "</p>            \n            <p>").concat(item.AppDate, "</p>            \n            <p>").concat(item.Choice, "</p>            \n            <p>").concat(item.StartDate, "</p>            \n            <p>").concat(item.CurrStatus, "</p>            \n            <p>").concat(item.Bank, "</p>            \n            <p>").concat(item.Sum, "</p>            \n            <p>").concat(item.RateExp, "</p>            \n            <p>").concat(item.FirmIncome, "</p>            \n            <p>").concat(item.MyPayment, "</p>            \n            <p>").concat(item.MyNotes, "</p>            \n            <p>").concat(item.SummaryActi, "</p>\n            </div>\n        "));
+    });
 }
 displayClientData();
 // APP LOGIC
 form === null || form === void 0 ? void 0 : form.addEventListener("submit", function (e) {
     e.preventDefault();
     var array = getStorage;
-    console.log(inpName.value);
-    console.log(inpSurname.value);
-    //get value and save to storage on submit
-    array.push({ "Name": inpName.value, "Surname": inpSurname.value });
-    console.log(array);
-    // display the 
+    // prettier-ignore
+    var fieldNames = ["Name", "Surname", "Phone", "Email", "AppDate", "Choice", "StartDate", "CurrStatus", "Bank", "Sum", "RateExp", "FirmIncome", "MyPayment", "MyNotes", "SummaryActi"];
+    var clientData = {};
+    for (var i = 0; i < 15; i++) {
+        var userInputs = inputFields[i];
+        //console.log(fieldNames[i], userInputs.value);
+        clientData[fieldNames[i]] = userInputs.value;
+    }
+    array.push(clientData);
+    localStorage.setItem("myEmptor", JSON.stringify(array));
+    displayClientData();
 });
 function hideModal() {
     deleteModal.classList.add("hide");
@@ -52,6 +57,7 @@ deleteBtnYes.addEventListener("click", function (e) {
     var displayRow = document.getElementById("displayRow");
     displayRow === null || displayRow === void 0 ? void 0 : displayRow.remove();
     hideModal();
+    location.reload();
 });
 // Select "No" option
 deleteBtnNo.addEventListener("click", function (e) {
@@ -59,8 +65,6 @@ deleteBtnNo.addEventListener("click", function (e) {
 });
 // 4. CLEAR FIELDS FUNCTIONALITY
 clearFieldsBtn.addEventListener("click", function (e) {
-    var inputFields = document.querySelectorAll("input");
-    console.log(inputFields.length);
     inputFields.forEach(function (field) {
         field.value = "";
     });

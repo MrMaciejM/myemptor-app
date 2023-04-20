@@ -1,6 +1,7 @@
 const form = document.getElementById("form") as HTMLFormElement;
 const inpName = document.getElementById("name") as HTMLInputElement;
 const inpSurname = document.getElementById("surname") as HTMLInputElement;
+const inputFields = document.querySelectorAll("input, select");
 
 const deleteAllBtn = document.getElementById("deleteAllBtn") as HTMLButtonElement;
 const deleteBtnYes = document.getElementById("deleteBtnYes") as HTMLButtonElement;
@@ -17,33 +18,32 @@ const getStorage = JSON.parse(localStorage.getItem("myEmptor")!);
 if (!getStorage) {
     localStorage.setItem("myEmptor", JSON.stringify([]))
 } 
-console.log("Storage");
-console.log(getStorage);
 
 // 2. Display saved information 
 function displayClientData() {
-    console.log(getStorage.length);
-    for(let i = 0; i < getStorage.length; i++) {
-        displayData.insertAdjacentHTML("afterend", `
-        <div class="displayRow" id="displayRow">
-        <p>${getStorage[i].Name}</p>            
-        <p>${getStorage[i].Surname}</p>            
-        <p>${getStorage[i].Phone}</p>            
-        <p>${getStorage[i].Email}</p>            
-        <p>${getStorage[i].AppDate}</p>            
-        <p>${getStorage[i].Choice}</p>            
-        <p>${getStorage[i].StartDate}</p>            
-        <p>${getStorage[i].CurrStatus}</p>            
-        <p>${getStorage[i].Bank}</p>            
-        <p>${getStorage[i].Sum}</p>            
-        <p>${getStorage[i].RateExp}</p>            
-        <p>${getStorage[i].FirmIncome}</p>            
-        <p>${getStorage[i].MyPayment}</p>            
-        <p>${getStorage[i].MyNotes}</p>            
-        <p>${getStorage[i].SummaryActi}</p>
-        </div>
-        `)
-    }
+    const displayRows = document.querySelectorAll(".displayRow");
+    displayRows.forEach(row => row.remove());    
+    getStorage.map(item => {
+        displayData.insertAdjacentHTML("beforeend", `
+            <div class="displayRow">
+            <p>${item.Name}</p>            
+            <p>${item.Surname}</p>            
+            <p>${item.Phone}</p>            
+            <p>${item.Email}</p>            
+            <p>${item.AppDate}</p>            
+            <p>${item.Choice}</p>            
+            <p>${item.StartDate}</p>            
+            <p>${item.CurrStatus}</p>            
+            <p>${item.Bank}</p>            
+            <p>${item.Sum}</p>            
+            <p>${item.RateExp}</p>            
+            <p>${item.FirmIncome}</p>            
+            <p>${item.MyPayment}</p>            
+            <p>${item.MyNotes}</p>            
+            <p>${item.SummaryActi}</p>
+            </div>
+        `);
+    });    
 }
 displayClientData();
 
@@ -52,17 +52,19 @@ form?.addEventListener("submit", (e) => {
     e.preventDefault(); 
     let array = getStorage;
 
-    console.log(inpName.value);
-    console.log(inpSurname.value);
-    
-    //get value and save to storage on submit
-    array.push({"Name": inpName.value,"Surname": inpSurname.value})
-    console.log(array);
-    
-    // display the 
+    // prettier-ignore
+    const fieldNames = ["Name","Surname","Phone","Email","AppDate","Choice","StartDate","CurrStatus","Bank","Sum","RateExp","FirmIncome","MyPayment","MyNotes","SummaryActi"];
+    const clientData = {} as HTMLInputElement | HTMLSelectElement;
 
+    for(let i = 0; i < 15; i++) {
+        const userInputs = inputFields[i] as HTMLInputElement | HTMLSelectElement ;            
+        //console.log(fieldNames[i], userInputs.value);
+        clientData[fieldNames[i]] = userInputs.value;
+    }
+    array.push(clientData);
+    localStorage.setItem("myEmptor", JSON.stringify(array));   
+    displayClientData() 
 })
-
 
 function hideModal() {
     deleteModal.classList.add("hide"); 
@@ -83,6 +85,7 @@ deleteBtnYes.addEventListener("click", (e) => {
     const displayRow = document.getElementById("displayRow");
     displayRow?.remove();
     hideModal();
+    location.reload();
 })
 // Select "No" option
 deleteBtnNo.addEventListener("click", (e) => {
@@ -90,13 +93,12 @@ deleteBtnNo.addEventListener("click", (e) => {
 })
 
 // 4. CLEAR FIELDS FUNCTIONALITY
-clearFieldsBtn.addEventListener("click", (e) => {
-    const inputFields = document.querySelectorAll("input"); 
-    console.log(inputFields.length);
+clearFieldsBtn.addEventListener("click", (e) => { 
     inputFields.forEach(field => {
         field.value = "";
     })
 })
+
 
 
 // TEST FETCH CALL 

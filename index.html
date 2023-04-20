@@ -53,10 +53,10 @@
           <div>
             <label for="currentStatus">Current Status</label>
             <!-- <input id="currentStatus" type="text" /> -->
-            <select name="currentStatus" id="currentStatus">
-              <option value="active">Active</option>
-              <option value="notActive">Not Active</option>
-              <option value="notApplicable">N/A</option>
+            <select id="currentStatus" name="currentStatus">
+              <option value="Active">Active</option>
+              <option value="Not Active">Not Active</option>
+              <option value="N/A">N/A</option>
             </select>
           </div>
 
@@ -111,6 +111,15 @@
 
       <!-- DISPLAY CLIENT HEADINGS -->
       <h2>My Clients</h2>
+      <div id="sortingMenuDiv">
+        <p>Sort By:</p>
+        <select>
+          <option value="">Current Status</option>
+          <option value="">Bank</option>
+          <option value="">Sum</option>
+          <option value="">Firm Income</option>
+        </select>
+      </div>
       <section id="displayDataSection">
         <div class="displayRowHeadings">
           <p>Name</p>

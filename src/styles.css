@@ -247,7 +247,7 @@ h2 {
   width: 5%;
 }
 
-/* MODAL STYLING */
+/***** MODAL STYLING *****/
 #deleteModal {
   position: absolute;
   background-color: white;
@@ -287,12 +287,14 @@ h2 {
   color: white;
   background-color: #4484f2;
 }
-/* 
-<div id="deleteBtnModal">
-        <p>X</p>
-        <p>Are you sure you want to delete all client data?</p>
-        <p>This action cannot be reversed!</p>
-        <button id="deleteBtnYes">YES</button>
-        <button id="deleteBtnNo">NO</button>
-      </div>
-*/
+
+/* SORTING FIELDS */
+#sortingMenuDiv {
+  display: flex;
+  justify-content: center;
+}
+#sortingMenuDiv p {
+  margin-right: 0.2rem;
+}
+#sortingMenuDiv select {
+}
