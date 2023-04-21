@@ -53,21 +53,27 @@ displayClientData();
 // Form Submission Logic
 form === null || form === void 0 ? void 0 : form.addEventListener("submit", (e) => {
     e.preventDefault();
-    let array = getStorage;
+    let array = getStorage || [];
     // prettier-ignore
     const fieldNames = ["Name", "Surname", "Phone", "Email", "AppDate", "Choice", "StartDate", "CurrStatus", "Bank", "Sum", "RateExp", "FirmIncome", "MyPayment", "MyNotes", "SummaryActi", "id"];
     const clientData = {};
     // preparing data to be stored in key value pairs {"fieldNames[i]": "userInputs.value"} and pushing to localStorage
-    for (let i = 0; i < 16; i++) {
-        const userInputs = inputFields[i];
-        clientData[fieldNames[i]] = userInputs.value;
-    }
+    if (inputFields !== null) {
+        for (let i = 0; i < 16; i++) {
+            const userInputs = inputFields[i];
+            clientData[fieldNames[i]] = userInputs.value;
+        }
+    } // end of if
     // sets ID on each object - forgot to do it initially, so the ID is in the last place to avoid breaking storing and retreiving objects
-    let counter = getStorage.length;
+    let counter = 0;
+    if (getStorage !== null && getStorage.length !== null) {
+        counter = getStorage.length;
+    }
     clientData.id = counter;
     array.push(clientData);
     localStorage.setItem("myEmptor", JSON.stringify(array));
     displayClientData();
+    location.reload();
 });
 function hideModal() {
     deleteModal.classList.add("hide");
@@ -188,21 +194,24 @@ sortOptions.addEventListener("click", (e) => {
             break;
     }
 }); // end of sorting function 
-// 6. REMOVE SINGLE CLIENT ON MOUSE CLICK + CONFIRMATION
+// 6. REMOVE SINGLE CLIENT ON MOUSE CLICK
 const deleteClientBtn = document.getElementsByClassName("delClientBtn");
 for (let i = 0; i < deleteClientBtn.length; i++) {
     displayData.addEventListener("click", (e) => {
+        console.log("clicked: ", e.target.getAttribute("id"));
         let getId = e.target.getAttribute("id");
         getId = parseInt(getId);
         //console.log("type of getId:" + typeof(getId));        
         const clientData = JSON.parse(localStorage.getItem("myEmptor"));
         const itemIndex = clientData.findIndex(index => index.id === getId);
         if (itemIndex !== -1) {
+            console.log("inside item index");
             clientData.splice(itemIndex, 1);
             localStorage.setItem("myEmptor", JSON.stringify(clientData));
             console.log(clientData);
             displayClientData();
         }
+        displayClientData();
     });
 }
 ;

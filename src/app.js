@@ -33,21 +33,27 @@ displayClientData();
 // Form Submission Logic
 form === null || form === void 0 ? void 0 : form.addEventListener("submit", function (e) {
     e.preventDefault();
-    var array = getStorage;
+    var array = getStorage || [];
     // prettier-ignore
     var fieldNames = ["Name", "Surname", "Phone", "Email", "AppDate", "Choice", "StartDate", "CurrStatus", "Bank", "Sum", "RateExp", "FirmIncome", "MyPayment", "MyNotes", "SummaryActi", "id"];
     var clientData = {};
     // preparing data to be stored in key value pairs {"fieldNames[i]": "userInputs.value"} and pushing to localStorage
-    for (var i = 0; i < 16; i++) {
-        var userInputs = inputFields[i];
-        clientData[fieldNames[i]] = userInputs.value;
-    }
+    if (inputFields !== null) {
+        for (var i = 0; i < 16; i++) {
+            var userInputs = inputFields[i];
+            clientData[fieldNames[i]] = userInputs.value;
+        }
+    } // end of if
     // sets ID on each object - forgot to do it initially, so the ID is in the last place to avoid breaking storing and retreiving objects
-    var counter = getStorage.length;
+    var counter = 0;
+    if (getStorage !== null && getStorage.length !== null) {
+        counter = getStorage.length;
+    }
     clientData.id = counter;
     array.push(clientData);
     localStorage.setItem("myEmptor", JSON.stringify(array));
     displayClientData();
+    location.reload();
 });
 function hideModal() {
     deleteModal.classList.add("hide");
