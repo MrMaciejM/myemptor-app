@@ -113,32 +113,45 @@
       <h2>My Clients</h2>
       <div id="sortingMenuDiv">
         <p>Sort By:</p>
-        <select>
-          <option value="">Current Status</option>
-          <option value="">Bank</option>
-          <option value="">Sum</option>
-          <option value="">Firm Income</option>
+        <select id="sortOptions">
+          <option value=""></option>
+          <option value="name-AZ">Name A-Z</option>
+          <option value="name-ZA">Name Z-A</option>
+          <option value="surname-AZ">Surname A-Z</option>
+          <option value="surname-ZA">Surname Z-A</option>
+          <option value="applicationDateNew">Application Date - Newest</option>
+          <option value="applicationDateOld">Application Date - Oldest</option>
+          <option value="bank">Bank</option>
+          <option value="sum">Sum</option>
+          <option value="firmIncomeLow">Firm Income - Lowest</option>
+          <option value="firmIncomeHigh">Firm Income - Highest</option>
+          <option value="myPaymentLow">My Payment - Lowest</option>
+          <option value="myPaymentHigh">My Payment - Highest</option>
         </select>
       </div>
+      <div class="displayRowHeadings">
+        <p>Name</p>
+        <p>Surname</p>
+        <p>Phone</p>
+        <p>Email</p>
+        <p>Application Date</p>
+        <p>Choice</p>
+        <p>Start Date</p>
+        <p>Current Status</p>
+        <p>Bank</p>
+        <p>Sum</p>
+        <p>Rate Exp100 %</p>
+        <p>Firm Income</p>
+        <p>My Payment</p>
+        <p>My Notes</p>
+        <p>Summary Acti.</p>
+      </div>
       <section id="displayDataSection">
-        <div class="displayRowHeadings">
-          <p>Name</p>
-          <p>Surname</p>
-          <p>Phone</p>
-          <p>Email</p>
-          <p>Application Date</p>
-          <p>Choice</p>
-          <p>Start Date</p>
-          <p>Current Status</p>
-          <p>Bank</p>
-          <p>Sum</p>
-          <p>Rate Exp100 %</p>
-          <p>Firm Income</p>
-          <p>My Payment</p>
-          <p>My Notes</p>
-          <p>Summary Acti.</p>
-        </div>
+        <!-- TS/JS will dynamically enter data here -->
+        <!-- const displayData = displayDataSection -->
+        <!-- <div class="displayRow"></div> -->
       </section>
+
       <!-- MODAL FOR DELETE BUTTON -->
       <div id="deleteModal" class="hide">
         <p id="modalCloseBtn">X</p>

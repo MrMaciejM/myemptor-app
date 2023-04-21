@@ -20,6 +20,7 @@
   --clearFieldsBtnBckg: #777777;
   --clearFieldsBtnBckgActive: #525252;
   --deleteBtnBckg: #ac0808;
+  --deleteBtnBckgHover: #7e0606;
   --deleteBtnBckgActive: #840707;
 }
 
@@ -129,7 +130,12 @@ select,
   background-color: var(--clearFieldsBtnBckgActive);
 }
 #deleteAllBtn {
+  transition: all 0.5s;
   background-color: var(--deleteBtnBckg);
+}
+#deleteAllBtn:hover {
+  transition: all 0.5s;
+  background-color: var(--deleteBtnBckgHover);
 }
 #deleteAllBtn:active {
   background-color: var(--deleteBtnBckgActive);

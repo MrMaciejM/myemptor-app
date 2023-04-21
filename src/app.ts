@@ -1,17 +1,26 @@
+// FORM variables
 const form = document.getElementById("form") as HTMLFormElement;
 const inpName = document.getElementById("name") as HTMLInputElement;
 const inpSurname = document.getElementById("surname") as HTMLInputElement;
 const inputFields = document.querySelectorAll("input, select");
 
+// BUTTONS
 const deleteAllBtn = document.getElementById("deleteAllBtn") as HTMLButtonElement;
 const deleteBtnYes = document.getElementById("deleteBtnYes") as HTMLButtonElement;
 const deleteBtnNo = document.getElementById("deleteBtnNo") as HTMLButtonElement;
 const clearFieldsBtn = document.getElementById("clearBtn") as HTMLButtonElement;
 
+// MODAL
 const deleteModal = document.getElementById("deleteModal") as HTMLElement;
 const modalCloseBtn = document.getElementById("modalCloseBtn") as HTMLParagraphElement;
 
+// DATA RENDERING
 const displayData = document.getElementById("displayDataSection") as HTMLElement;
+const displayRows = document.querySelectorAll(".displayRow");
+
+
+// SORTING OPTIONS
+const sortOptions = document.getElementById("sortOptions") as HTMLSelectElement;
 
 // 1. Create LocalStorage if none exist for the app
 const getStorage = JSON.parse(localStorage.getItem("myEmptor")!);
@@ -21,9 +30,9 @@ if (!getStorage) {
 
 // 2. Display saved information 
 function displayClientData() {
-    const displayRows = document.querySelectorAll(".displayRow");
-    displayRows.forEach(row => row.remove());    
-    getStorage.map(item => {
+    const storageData = JSON.parse(localStorage.getItem("myEmptor")!) || []; 
+    displayData.innerHTML = "";   
+    storageData.forEach(item => {     
         displayData.insertAdjacentHTML("beforeend", `
             <div class="displayRow">
             <p>${item.Name}</p>            
@@ -58,7 +67,6 @@ form?.addEventListener("submit", (e) => {
 
     for(let i = 0; i < 15; i++) {
         const userInputs = inputFields[i] as HTMLInputElement | HTMLSelectElement ;            
-        //console.log(fieldNames[i], userInputs.value);
         clientData[fieldNames[i]] = userInputs.value;
     }
     array.push(clientData);
@@ -99,7 +107,97 @@ clearFieldsBtn.addEventListener("click", (e) => {
     })
 })
 
+// 5. SORTING FUNCTIONALITY 
 
+sortOptions.addEventListener("click", (e) => {
+    const selectedOption = (e.target as HTMLOptionElement).value as string; 
+      //console.log("sort by name is: " + selectedOption);
+      // localStorage data which will be used for the filter
+const dataArray = getStorage.map(item => {
+    return {
+        Name: item.Name,
+        Surname: item.Surname,
+        Phone: item.Phone,
+        Email: item.Email,
+        AppDate: item.AppDate,
+        Choice: item.Choice,
+        StartDate: item.StartDate,
+        CurrStatus: item.CurrStatus,
+        Bank: item.Bank,
+        Sum: item.Sum,
+        RateExp: item.RateExp,
+        FirmIncome: item.FirmIncome,
+        MyPayment: item.MyPayment,
+        MyNotes: item.MyNotes,
+        SummaryActi: item.SummaryActi
+    }
+})
+      // sorting logic 
+      switch(selectedOption) {
+        case "name-AZ":
+            dataArray.sort((a, b) => a.Name.localeCompare(b.Name));
+            localStorage.setItem("myEmptor", JSON.stringify(dataArray));
+            displayClientData();
+            break;
+        case "name-ZA":
+            //displayRows.forEach(row => row.remove());
+            dataArray.sort((a, b) => b.Name.localeCompare(a.Name));
+            localStorage.setItem("myEmptor", JSON.stringify(dataArray));
+            displayClientData();
+            break;
+        case "surname-AZ":
+            dataArray.sort((a, b) => a.Surname.localeCompare(b.Surname));
+            localStorage.setItem("myEmptor", JSON.stringify(dataArray));
+            displayClientData();
+            break;
+        case "surname-ZA":
+            dataArray.sort((a, b) => b.Surname.localeCompare(a.Surname));
+            localStorage.setItem("myEmptor", JSON.stringify(dataArray));
+            displayClientData();
+            break;
+        case "applicationDateNew":
+            dataArray.sort((a, b) => Date.parse(b.AppDate) - Date.parse(a.AppDate));
+            localStorage.setItem("myEmptor", JSON.stringify(dataArray));
+            displayClientData();
+            break;
+        case "applicationDateOld":
+            dataArray.sort((a, b) => Date.parse(a.AppDate) - Date.parse(b.AppDate));
+            localStorage.setItem("myEmptor", JSON.stringify(dataArray));
+            displayClientData();
+            break;
+        case "bank":
+            dataArray.sort((a, b) => b.Bank.localeCompare(a.Bank));
+            localStorage.setItem("myEmptor", JSON.stringify(dataArray));
+            displayClientData();
+            break;
+        case "sum":
+            dataArray.sort((a, b) => parseFloat(b.Sum) - parseFloat(a.Sum));
+            localStorage.setItem("myEmptor", JSON.stringify(dataArray));
+            displayClientData();
+            break;
+        case "firmIncomeLow":
+            dataArray.sort((a, b) => parseFloat(a.FirmIncome) - parseFloat(b.FirmIncome));
+            localStorage.setItem("myEmptor", JSON.stringify(dataArray));
+            displayClientData();
+            break;
+        case "firmIncomeHigh":
+            dataArray.sort((a, b) => parseFloat(b.FirmIncome) - parseFloat(a.FirmIncome));
+            localStorage.setItem("myEmptor", JSON.stringify(dataArray));
+            displayClientData();
+            break;
+        case "myPaymentLow":
+            dataArray.sort((a, b) => parseFloat(a.MyPayment) - parseFloat(b.MyPayment));
+            localStorage.setItem("myEmptor", JSON.stringify(dataArray));
+            displayClientData();
+            break;
+        case "myPaymentHigh":
+            dataArray.sort((a, b) => parseFloat(b.MyPayment) - parseFloat(a.MyPayment));
+            localStorage.setItem("myEmptor", JSON.stringify(dataArray));
+            displayClientData();
+            break;
+      }
+
+}); // end of sorting function 
 
 // TEST FETCH CALL 
 
