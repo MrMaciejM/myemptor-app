@@ -168,21 +168,24 @@ sortOptions.addEventListener("click", function (e) {
             break;
     }
 }); // end of sorting function 
-// 6. REMOVE SINGLE CLIENT ON MOUSE CLICK + CONFIRMATION
+// 6. REMOVE SINGLE CLIENT ON MOUSE CLICK
 var deleteClientBtn = document.getElementsByClassName("delClientBtn");
 for (var i = 0; i < deleteClientBtn.length; i++) {
     displayData.addEventListener("click", function (e) {
+        console.log("clicked: ", e.target.getAttribute("id"));
         var getId = e.target.getAttribute("id");
         getId = parseInt(getId);
         //console.log("type of getId:" + typeof(getId));        
         var clientData = JSON.parse(localStorage.getItem("myEmptor"));
         var itemIndex = clientData.findIndex(function (index) { return index.id === getId; });
         if (itemIndex !== -1) {
+            console.log("inside item index");
             clientData.splice(itemIndex, 1);
             localStorage.setItem("myEmptor", JSON.stringify(clientData));
             console.log(clientData);
             displayClientData();
         }
+        displayClientData();
     });
 }
 ;

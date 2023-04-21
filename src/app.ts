@@ -203,11 +203,14 @@ const dataArray = getStorage.map(item => {
 
 }); // end of sorting function 
 
-// 6. REMOVE SINGLE CLIENT ON MOUSE CLICK + CONFIRMATION
+// 6. REMOVE SINGLE CLIENT ON MOUSE CLICK
 const deleteClientBtn = document.getElementsByClassName("delClientBtn");
 
 for (let i = 0; i < deleteClientBtn.length; i++) {
-    displayData.addEventListener("click", (e) => {        
+    
+    displayData.addEventListener("click", (e) => {  
+        console.log("clicked: " e.target.getAttribute("id"));
+              
         let getId = e.target.getAttribute("id");
         getId = parseInt(getId); 
         //console.log("type of getId:" + typeof(getId));        
@@ -215,11 +218,13 @@ for (let i = 0; i < deleteClientBtn.length; i++) {
         const itemIndex = clientData.findIndex(index => index.id === getId)  
 
       if (itemIndex !== -1) {
+        console.log("inside item index");        
         clientData.splice(itemIndex, 1);
         localStorage.setItem("myEmptor", JSON.stringify(clientData));
         console.log(clientData);
         displayClientData();     
       }
+      displayClientData();     
     });
   };
 
