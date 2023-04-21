@@ -264,14 +264,21 @@ backupBtn?.addEventListener("click", (e) => {
 showLastBackupTime();
     
 // 8. RESTORE FROM BACKUP
-
+const restoreBtn = document.getElementById("restoreBtn"); 
+restoreBtn?.addEventListener("click", (e) => {
+    console.log("clicked");    
+    const emptorBackup = JSON.parse(localStorage.getItem("myEmptorBackup"));
+    localStorage.setItem("myEmptor", JSON.stringify(emptorBackup))
+    displayClientData()
+    console.log(emptorBackup);    
+})
 
 
 // TEST FETCH CALL 
 
 // ADD "f" to beginning of API key to make it work
 // I disabled it so I don't run out of calls for the demo
-const apiKey = "277792558525d895e036ffce5c0fef3"
+//const apiKey = "277792558525d895e036ffce5c0fef3"
 // fetch(`http://api.marketstack.com/v1/eod?access_key=${apiKey}&symbols=AAPL&limit=1`)
 // .then(response => response.json())
 // .then(data => console.log(data))
