@@ -222,7 +222,6 @@ for (let i = 0; i < deleteClientBtn.length; i++) {
       }
     });
   };
-    
 
 // 7. BACKUP OF DATA AND SHOWING BACKUP TIME
 const backupBtn = document.getElementById("backupBtn");
