@@ -188,10 +188,10 @@ for (var i = 0; i < deleteClientBtn.length; i++) {
             console.log("inside item index");
             clientData.splice(itemIndex, 1);
             localStorage.setItem("myEmptor", JSON.stringify(clientData));
-            console.log(clientData);
-            displayClientData();
+            //console.log(clientData);
+            location.reload();
         }
-        displayClientData();
+        //displayClientData();     
     });
 }
 ;
