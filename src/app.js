@@ -21,26 +21,30 @@ var getStorage = JSON.parse(localStorage.getItem("myEmptor"));
 if (!getStorage) {
     localStorage.setItem("myEmptor", JSON.stringify([]));
 }
-// 2. Display saved information 
+// 2. Display saved information/client data
 function displayClientData() {
     var storageData = JSON.parse(localStorage.getItem("myEmptor")) || [];
     displayData.innerHTML = "";
     storageData.forEach(function (item) {
-        displayData.insertAdjacentHTML("beforeend", "\n            <div class=\"displayRow\">\n            <p>".concat(item.Name, "</p>            \n            <p>").concat(item.Surname, "</p>            \n            <p>").concat(item.Phone, "</p>            \n            <p>").concat(item.Email, "</p>            \n            <p>").concat(item.AppDate, "</p>            \n            <p>").concat(item.Choice, "</p>            \n            <p>").concat(item.StartDate, "</p>            \n            <p>").concat(item.CurrStatus, "</p>            \n            <p>").concat(item.Bank, "</p>            \n            <p>").concat(item.Sum, "</p>            \n            <p>").concat(item.RateExp, "</p>            \n            <p>").concat(item.FirmIncome, "</p>            \n            <p>").concat(item.MyPayment, "</p>            \n            <p>").concat(item.MyNotes, "</p>            \n            <p>").concat(item.SummaryActi, "</p>\n            </div>\n        "));
+        displayData.insertAdjacentHTML("beforeend", "\n            <div class=\"displayRow\">\n            <p>".concat(item.Name, "</p>            \n            <p>").concat(item.Surname, "</p>            \n            <p>").concat(item.Phone, "</p>            \n            <p>").concat(item.Email, "</p>            \n            <p>").concat(item.AppDate, "</p>            \n            <p>").concat(item.Choice, "</p>            \n            <p>").concat(item.StartDate, "</p>            \n            <p>").concat(item.CurrStatus, "</p>            \n            <p>").concat(item.Bank, "</p>            \n            <p>").concat(item.Sum, "</p>            \n            <p>").concat(item.RateExp, "</p>            \n            <p>").concat(item.FirmIncome, "</p>            \n            <p>").concat(item.MyPayment, "</p>            \n            <p>").concat(item.MyNotes, "</p>            \n            <p>").concat(item.SummaryActi, "</p>\n            <button class=\"delClientBtn\" id=").concat(item.id, ">X</button>\n            </div>\n        "));
     });
 }
 displayClientData();
-// APP LOGIC
+// Form Submission Logic
 form === null || form === void 0 ? void 0 : form.addEventListener("submit", function (e) {
     e.preventDefault();
     var array = getStorage;
     // prettier-ignore
-    var fieldNames = ["Name", "Surname", "Phone", "Email", "AppDate", "Choice", "StartDate", "CurrStatus", "Bank", "Sum", "RateExp", "FirmIncome", "MyPayment", "MyNotes", "SummaryActi"];
+    var fieldNames = ["Name", "Surname", "Phone", "Email", "AppDate", "Choice", "StartDate", "CurrStatus", "Bank", "Sum", "RateExp", "FirmIncome", "MyPayment", "MyNotes", "SummaryActi", "id"];
     var clientData = {};
-    for (var i = 0; i < 15; i++) {
+    // preparing data to be stored in key value pairs {"fieldNames[i]": "userInputs.value"} and pushing to localStorage
+    for (var i = 0; i < 16; i++) {
         var userInputs = inputFields[i];
         clientData[fieldNames[i]] = userInputs.value;
     }
+    // sets ID on each object - forgot to do it initially, so the ID is in the last place to avoid breaking storing and retreiving objects
+    var counter = getStorage.length;
+    clientData.id = counter;
     array.push(clientData);
     localStorage.setItem("myEmptor", JSON.stringify(array));
     displayClientData();
@@ -164,6 +168,60 @@ sortOptions.addEventListener("click", function (e) {
             break;
     }
 }); // end of sorting function 
+// 6. REMOVE SINGLE CLIENT ON MOUSE CLICK + CONFIRMATION
+var deleteClientBtn = document.getElementsByClassName("delClientBtn");
+for (var i = 0; i < deleteClientBtn.length; i++) {
+    displayData.addEventListener("click", function (e) {
+        var getId = e.target.getAttribute("id");
+        getId = parseInt(getId);
+        //console.log("type of getId:" + typeof(getId));        
+        var clientData = JSON.parse(localStorage.getItem("myEmptor"));
+        var itemIndex = clientData.findIndex(function (index) { return index.id === getId; });
+        if (itemIndex !== -1) {
+            clientData.splice(itemIndex, 1);
+            localStorage.setItem("myEmptor", JSON.stringify(clientData));
+            console.log(clientData);
+            displayClientData();
+        }
+    });
+}
+;
+// 7. BACKUP OF DATA AND SHOWING BACKUP TIME
+var backupBtn = document.getElementById("backupBtn");
+if (!localStorage.getItem("myEmptorTime")) {
+    localStorage.setItem("myEmptorTime", JSON.stringify(""));
+}
+;
+function showLastBackupTime() {
+    var currentDate = new Date();
+    var day = currentDate.getDate();
+    var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var monthName = monthNames[currentDate.getMonth()];
+    var year = currentDate.getFullYear();
+    var hours = currentDate.getHours();
+    var minutes = currentDate.getMinutes().toString().padStart(2, "0");
+    var formattedDate = "".concat(day, "-").concat(monthName, "-").concat(year, " ").concat(hours, ":").concat(minutes);
+    console.log(formattedDate);
+    return formattedDate;
+}
+var updateTime = document.getElementById("backupTimeParagraph");
+var getTime = localStorage.getItem("myEmptorTime");
+// sets the p tag with last backup time
+updateTime === null || updateTime === void 0 ? void 0 : updateTime.textContent = "Last backup was on ".concat(getTime === null || getTime === void 0 ? void 0 : getTime.replaceAll('"', ""));
+// update time on click, and take backup.
+var getBackupData = localStorage.getItem("myEmptorBackup");
+if (!getBackupData) {
+    localStorage.setItem("myEmptorBackup", JSON.stringify([]));
+}
+backupBtn === null || backupBtn === void 0 ? void 0 : backupBtn.addEventListener("click", function (e) {
+    localStorage.setItem("myEmptorTime", JSON.stringify(showLastBackupTime()));
+    updateTime === null || updateTime === void 0 ? void 0 : updateTime.textContent = "Last backup was on ".concat(getTime === null || getTime === void 0 ? void 0 : getTime.replaceAll('"', ""));
+    var backupBtnDiv = document.getElementById("backupBtnDiv");
+    localStorage.setItem("myEmptorBackup", JSON.stringify(getStorage));
+    location.reload();
+});
+showLastBackupTime();
+// 8. RESTORE FROM BACKUP
 // TEST FETCH CALL 
 // ADD "f" to beginning of API key to make it work
 // I disabled it so I don't run out of calls for the demo

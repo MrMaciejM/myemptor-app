@@ -18,7 +18,6 @@ const modalCloseBtn = document.getElementById("modalCloseBtn") as HTMLParagraphE
 const displayData = document.getElementById("displayDataSection") as HTMLElement;
 const displayRows = document.querySelectorAll(".displayRow");
 
-
 // SORTING OPTIONS
 const sortOptions = document.getElementById("sortOptions") as HTMLSelectElement;
 
@@ -28,7 +27,7 @@ if (!getStorage) {
     localStorage.setItem("myEmptor", JSON.stringify([]))
 } 
 
-// 2. Display saved information 
+// 2. Display saved information/client data
 function displayClientData() {
     const storageData = JSON.parse(localStorage.getItem("myEmptor")!) || []; 
     displayData.innerHTML = "";   
@@ -50,28 +49,34 @@ function displayClientData() {
             <p>${item.MyPayment}</p>            
             <p>${item.MyNotes}</p>            
             <p>${item.SummaryActi}</p>
+            <button class="delClientBtn" id=${item.id}>X</button>
             </div>
         `);
     });    
 }
 displayClientData();
 
-// APP LOGIC
+// Form Submission Logic
 form?.addEventListener("submit", (e) => {
     e.preventDefault(); 
     let array = getStorage;
 
     // prettier-ignore
-    const fieldNames = ["Name","Surname","Phone","Email","AppDate","Choice","StartDate","CurrStatus","Bank","Sum","RateExp","FirmIncome","MyPayment","MyNotes","SummaryActi"];
+    const fieldNames = ["Name","Surname","Phone","Email","AppDate","Choice","StartDate","CurrStatus","Bank","Sum","RateExp","FirmIncome","MyPayment","MyNotes","SummaryActi", "id"];
     const clientData = {} as HTMLInputElement | HTMLSelectElement;
 
-    for(let i = 0; i < 15; i++) {
-        const userInputs = inputFields[i] as HTMLInputElement | HTMLSelectElement ;            
+    // preparing data to be stored in key value pairs {"fieldNames[i]": "userInputs.value"} and pushing to localStorage
+    for(let i = 0; i < 16; i++) {
+        const userInputs = inputFields[i] as HTMLInputElement | HTMLSelectElement ;              
         clientData[fieldNames[i]] = userInputs.value;
     }
+    // sets ID on each object - forgot to do it initially, so the ID is in the last place to avoid breaking storing and retreiving objects
+    let counter = getStorage.length; 
+    clientData.id = counter; 
+    
     array.push(clientData);
     localStorage.setItem("myEmptor", JSON.stringify(array));   
-    displayClientData() 
+    displayClientData(); 
 })
 
 function hideModal() {
@@ -108,7 +113,6 @@ clearFieldsBtn.addEventListener("click", (e) => {
 })
 
 // 5. SORTING FUNCTIONALITY 
-
 sortOptions.addEventListener("click", (e) => {
     const selectedOption = (e.target as HTMLOptionElement).value as string; 
       //console.log("sort by name is: " + selectedOption);
@@ -198,6 +202,70 @@ const dataArray = getStorage.map(item => {
       }
 
 }); // end of sorting function 
+
+// 6. REMOVE SINGLE CLIENT ON MOUSE CLICK + CONFIRMATION
+const deleteClientBtn = document.getElementsByClassName("delClientBtn");
+
+for (let i = 0; i < deleteClientBtn.length; i++) {
+    displayData.addEventListener("click", (e) => {        
+        let getId = e.target.getAttribute("id");
+        getId = parseInt(getId); 
+        //console.log("type of getId:" + typeof(getId));        
+        const clientData = JSON.parse(localStorage.getItem("myEmptor"));
+        const itemIndex = clientData.findIndex(index => index.id === getId)  
+
+      if (itemIndex !== -1) {
+        clientData.splice(itemIndex, 1);
+        localStorage.setItem("myEmptor", JSON.stringify(clientData));
+        console.log(clientData);
+        displayClientData();     
+      }
+    });
+  };
+    
+
+// 7. BACKUP OF DATA AND SHOWING BACKUP TIME
+const backupBtn = document.getElementById("backupBtn");
+if(!localStorage.getItem("myEmptorTime")) {
+    localStorage.setItem("myEmptorTime", JSON.stringify(""))
+};
+
+function showLastBackupTime() {
+    const currentDate = new Date();
+    const day = currentDate.getDate();
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const monthName = monthNames[currentDate.getMonth()];
+    const year = currentDate.getFullYear();
+    const hours = currentDate.getHours();
+    const minutes = currentDate.getMinutes().toString().padStart(2, "0");    
+    const formattedDate = `${day}-${monthName}-${year} ${hours}:${minutes}`;
+    console.log(formattedDate);
+    return formattedDate;    
+  }
+
+const updateTime = document.getElementById("backupTimeParagraph");
+const getTime = localStorage.getItem("myEmptorTime");
+// sets the p tag with last backup time
+updateTime?.textContent = `Last backup was on ${getTime?.replaceAll('"',"")}`; 
+
+// update time on click, and take backup.
+const getBackupData = localStorage.getItem("myEmptorBackup")
+    if(!getBackupData) {
+        localStorage.setItem("myEmptorBackup", JSON.stringify([])); 
+        
+    }
+backupBtn?.addEventListener("click", (e) => {
+    localStorage.setItem("myEmptorTime", JSON.stringify(showLastBackupTime()))
+    updateTime?.textContent = `Last backup was on ${getTime?.replaceAll('"',"")}`; 
+    const backupBtnDiv = document.getElementById("backupBtnDiv");
+    localStorage.setItem("myEmptorBackup", JSON.stringify(getStorage));
+    location.reload();
+})
+showLastBackupTime();
+    
+// 8. RESTORE FROM BACKUP
+
+
 
 // TEST FETCH CALL 
 
