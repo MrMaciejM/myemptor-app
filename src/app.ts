@@ -29,7 +29,9 @@ if (!getStorage) {
 
 // 2. Display saved information/client data
 function displayClientData() {
-    const storageData = JSON.parse(localStorage.getItem("myEmptor")!) || []; 
+    let storageData = JSON.parse(localStorage.getItem("myEmptor")!) || []; 
+    console.log(storageData);
+    
     displayData.innerHTML = "";   
     storageData.forEach(item => {     
         displayData.insertAdjacentHTML("beforeend", `
@@ -81,7 +83,7 @@ form?.addEventListener("submit", (e) => {
     
     array.push(clientData);
     localStorage.setItem("myEmptor", JSON.stringify(array));   
-    displayClientData(); 
+    //displayClientData(); 
     location.reload();
 })
 
@@ -215,7 +217,7 @@ const deleteClientBtn = document.getElementsByClassName("delClientBtn");
 for (let i = 0; i < deleteClientBtn.length; i++) {
     
     displayData.addEventListener("click", (e) => {  
-        console.log("clicked: " e.target.getAttribute("id"));
+        console.log("clicked + target id: " e.target.getAttribute("id"));
               
         let getId = e.target.getAttribute("id");
         getId = parseInt(getId); 
@@ -224,13 +226,12 @@ for (let i = 0; i < deleteClientBtn.length; i++) {
         const itemIndex = clientData.findIndex(index => index.id === getId)  
 
       if (itemIndex !== -1) {
-        console.log("inside item index");        
+        //console.log("inside item index");        
         clientData.splice(itemIndex, 1);
         localStorage.setItem("myEmptor", JSON.stringify(clientData));
         //console.log(clientData);
-        location.reload()    
+        location.reload() 
       }
-      //displayClientData();     
     });
   };
 
@@ -249,7 +250,7 @@ function showLastBackupTime() {
     const hours = currentDate.getHours();
     const minutes = currentDate.getMinutes().toString().padStart(2, "0");    
     const formattedDate = `${day}-${monthName}-${year} ${hours}:${minutes}`;
-    console.log(formattedDate);
+    //console.log(formattedDate);
     return formattedDate;    
   }
 

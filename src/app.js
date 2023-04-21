@@ -24,6 +24,7 @@ if (!getStorage) {
 // 2. Display saved information/client data
 function displayClientData() {
     var storageData = JSON.parse(localStorage.getItem("myEmptor")) || [];
+    console.log(storageData);
     displayData.innerHTML = "";
     storageData.forEach(function (item) {
         displayData.insertAdjacentHTML("beforeend", "\n            <div class=\"displayRow\">\n            <p>".concat(item.Name, "</p>            \n            <p>").concat(item.Surname, "</p>            \n            <p>").concat(item.Phone, "</p>            \n            <p>").concat(item.Email, "</p>            \n            <p>").concat(item.AppDate, "</p>            \n            <p>").concat(item.Choice, "</p>            \n            <p>").concat(item.StartDate, "</p>            \n            <p>").concat(item.CurrStatus, "</p>            \n            <p>").concat(item.Bank, "</p>            \n            <p>").concat(item.Sum, "</p>            \n            <p>").concat(item.RateExp, "</p>            \n            <p>").concat(item.FirmIncome, "</p>            \n            <p>").concat(item.MyPayment, "</p>            \n            <p>").concat(item.MyNotes, "</p>            \n            <p>").concat(item.SummaryActi, "</p>\n            <button class=\"delClientBtn\" id=").concat(item.id, ">X</button>\n            </div>\n        "));
@@ -52,7 +53,7 @@ form === null || form === void 0 ? void 0 : form.addEventListener("submit", func
     clientData.id = counter;
     array.push(clientData);
     localStorage.setItem("myEmptor", JSON.stringify(array));
-    displayClientData();
+    //displayClientData(); 
     location.reload();
 });
 function hideModal() {
@@ -178,20 +179,19 @@ sortOptions.addEventListener("click", function (e) {
 var deleteClientBtn = document.getElementsByClassName("delClientBtn");
 for (var i = 0; i < deleteClientBtn.length; i++) {
     displayData.addEventListener("click", function (e) {
-        console.log("clicked: ", e.target.getAttribute("id"));
+        console.log("clicked + target id: ", e.target.getAttribute("id"));
         var getId = e.target.getAttribute("id");
         getId = parseInt(getId);
         //console.log("type of getId:" + typeof(getId));        
         var clientData = JSON.parse(localStorage.getItem("myEmptor"));
         var itemIndex = clientData.findIndex(function (index) { return index.id === getId; });
         if (itemIndex !== -1) {
-            console.log("inside item index");
+            //console.log("inside item index");        
             clientData.splice(itemIndex, 1);
             localStorage.setItem("myEmptor", JSON.stringify(clientData));
             //console.log(clientData);
             location.reload();
         }
-        //displayClientData();     
     });
 }
 ;
@@ -210,7 +210,7 @@ function showLastBackupTime() {
     var hours = currentDate.getHours();
     var minutes = currentDate.getMinutes().toString().padStart(2, "0");
     var formattedDate = "".concat(day, "-").concat(monthName, "-").concat(year, " ").concat(hours, ":").concat(minutes);
-    console.log(formattedDate);
+    //console.log(formattedDate);
     return formattedDate;
 }
 var updateTime = document.getElementById("backupTimeParagraph");
