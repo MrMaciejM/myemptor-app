@@ -8,14 +8,15 @@
 :root {
   --spanColor: #519ce7;
 
-  --bodyBckg: #07173b; /* d8d8d8 */
+  --bodyBckg: #091c47; /* d8d8d8 */
 
   --headerBckg: none;
   --headerTextColor: #d8d8d8;
 
   --h2color: #519ce7;
 
-  --formTextColor: #d2d2d2;
+  --formTextColor: #000;
+  --formLabelColor: #eee;
   --inputBorderColor: #999;
   --inputBckgColor: #cdcdcd;
   --addSubmittedBckg: #24541f;
@@ -80,6 +81,10 @@ main {
   margin-top: 3rem;
 }
 
+form div label {
+  color: var(--formLabelColor);
+}
+
 /* FORM STYLING */
 form {
   /* display: flex; */
@@ -128,8 +133,7 @@ select {
 
 /* BORDERS AND BACKGROUND STYLING */
 form input,
-select,
-.displayRow {
+select {
   border: solid 1px var(--inputBorderColor);
   background-color: var(--inputBckgColor);
   border-radius: 11px;
@@ -378,6 +382,4 @@ h2 {
 }
 #sortingMenuDiv p {
   margin-right: 0.2rem;
-}
-#sortingMenuDiv select {
 }
