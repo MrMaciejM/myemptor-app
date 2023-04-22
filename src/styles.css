@@ -6,22 +6,31 @@
 }
 
 :root {
-  --spanColor: #a1ff84;
+  --spanColor: #ecae75;
 
-  --bodyBckg: #c2c2c2; /* d8d8d8 */
+  --bodyBckg: #a18c8c; /* d8d8d8 */
 
-  --headerBckg: #378130;
+  --headerBckg: #765f5f;
   --headerTextColor: #d8d8d8;
 
-  --formTextColor: #474747;
+  --h2color: #f3af70;
+
+  --formTextColor: #2a2a2a;
   --inputBorderColor: #999;
+  --inputBckgColor: #cdcdcd;
   --addSubmittedBckg: #24541f;
 
-  --clearFieldsBtnBckg: #777777;
+  --btnColor: #2a2a2a;
+  --btnBckg: #877373;
+  --submitBtnBckg: #d69e6a;
+
+  --clearFieldsBtnBckg: #565656;
   --clearFieldsBtnBckgActive: #525252;
-  --deleteBtnBckg: #ac0808;
+  --deleteBtnBckg: #bd0b0b;
   --deleteBtnBckgHover: #7e0606;
   --deleteBtnBckgActive: #840707;
+
+  --clientDataRowBckg: #877373;
 }
 
 /***** HELPER CLASSES *****/
@@ -106,11 +115,12 @@ select {
   padding: 0.16rem 0;
 }
 
-/* BORDERS STYLING */
+/* BORDERS AND BACKGROUND STYLING */
 form input,
 select,
 .displayRow {
   border: solid 1px var(--inputBorderColor);
+  background-color: var(--inputBckgColor);
   border-radius: 11px;
 }
 /***** BUTTONS STYLING *****/
@@ -131,8 +141,8 @@ select,
   border-radius: 11px;
   border: none;
   font-weight: 500;
-  color: var(--headerTextColor);
-  background-color: var(--headerBckg);
+  color: var(--btnColor);
+  background-color: var(--btnBckg);
 }
 #submitBtn:hover,
 #deleteAllBtn:hover,
@@ -147,10 +157,8 @@ select,
   background-color: var(--addSubmittedBckg);
 }
 
-#clearBtn,
-#backupBtn,
-#restoreBtn {
-  background-color: var(--clearFieldsBtnBckg);
+#submitBtn {
+  background-color: var(--submitBtnBckg);
 }
 #clearBtn:active {
   background-color: var(--clearFieldsBtnBckgActive);
@@ -169,7 +177,7 @@ select,
 /* HEADING 2 */
 h2 {
   margin-left: 1.7rem;
-  color: var(--addSubmittedBckg);
+  color: var(--h2color);
   margin-top: 2rem;
 }
 /* *************************** */
@@ -185,7 +193,7 @@ h2 {
 .displayRow {
   display: flex;
   justify-content: space-between;
-  background-color: var(--inputBorderColor);
+  background-color: var(--clientDataRowBckg);
   padding: 0.3rem;
   margin: 2rem 0.5rem;
 }
@@ -199,7 +207,7 @@ h2 {
 .displayRow p {
   font-size: 1rem;
   word-wrap: break-word;
-  border: solid 1px green;
+  /* border: solid 1px green; */
 }
 
 /***** Delete Client Button *****/
