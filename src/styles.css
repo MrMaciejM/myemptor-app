@@ -6,31 +6,42 @@
 }
 
 :root {
-  --spanColor: #ecae75;
+  --spanColor: #519ce7;
 
-  --bodyBckg: #a18c8c; /* d8d8d8 */
+  --bodyBckg: #07173b; /* d8d8d8 */
 
-  --headerBckg: #765f5f;
+  --headerBckg: none;
   --headerTextColor: #d8d8d8;
 
-  --h2color: #f3af70;
+  --h2color: #519ce7;
 
-  --formTextColor: #2a2a2a;
+  --formTextColor: #d2d2d2;
   --inputBorderColor: #999;
   --inputBckgColor: #cdcdcd;
   --addSubmittedBckg: #24541f;
 
-  --btnColor: #2a2a2a;
-  --btnBckg: #877373;
-  --submitBtnBckg: #d69e6a;
+  --btnColor: #d2d2d2;
+  --btnBckg: #3c72a9;
+  --submitBtnBckg: #469a6d;
 
   --clearFieldsBtnBckg: #565656;
   --clearFieldsBtnBckgActive: #525252;
-  --deleteBtnBckg: #bd0b0b;
+  --deleteBtnBckg: #a50a0a;
   --deleteBtnBckgHover: #7e0606;
   --deleteBtnBckgActive: #840707;
 
-  --clientDataRowBckg: #877373;
+  --backupTimeParaColor: #d2d2d2;
+
+  --deleteClientBtnColor: #fff;
+  --deleteClientBtnBckg: #1d456d;
+
+  --sortHeadingColor: #d2d2d2;
+  --sortOptionColor: #000;
+  --sortOptionBckg: #e0e0e0;
+
+  --dataHeadingsColor: #d2d2d2;
+  --dataRowColor: #e0e0e0;
+  --dataRowBckg: #2f73b7;
 }
 
 /***** HELPER CLASSES *****/
@@ -128,6 +139,7 @@ select,
   font-size: 0.9rem;
   font-style: italic;
   text-align: center;
+  color: var(--backupTimeParaColor);
 }
 
 #submitBtn,
@@ -180,6 +192,16 @@ h2 {
   color: var(--h2color);
   margin-top: 2rem;
 }
+
+/* SORT FUNCTION STYLING */
+#sortingMenuDiv p {
+  color: var(--sortHeadingColor);
+}
+#sortingMenuDiv select option {
+  color: var(--sortOptionColor);
+  background-color: var(--sortOptionBckg);
+}
+
 /* *************************** */
 /* CLIENT DATA ROWS STYLING */
 .displayRowHeadings {
@@ -188,12 +210,14 @@ h2 {
   column-gap: 3rem;
   margin: 0 1.3rem;
   margin-top: 2rem;
+  color: var(--dataHeadingsColor);
 }
 
 .displayRow {
   display: flex;
   justify-content: space-between;
-  background-color: var(--clientDataRowBckg);
+  color: var(--dataRowColor);
+  background-color: var(--dataRowBckg);
   padding: 0.3rem;
   margin: 2rem 0.5rem;
 }
@@ -210,16 +234,16 @@ h2 {
   /* border: solid 1px green; */
 }
 
-/***** Delete Client Button *****/
+/***** Delete Individual Client Data Button *****/
 .delClientBtn {
-  background-color: #ed4444;
-  border: solid 1px #505050;
-  color: white;
+  background-color: var(--deleteClientBtnBckg);
+  border: none;
+  color: var(--deleteClientBtnColor);
   margin: 0;
-  padding: 2px 5px;
   border-radius: 9px;
   font-size: 11px;
-  height: 20px;
+  height: 18px;
+  width: 18px;
 }
 .delClientBtn:hover {
   cursor: pointer;
