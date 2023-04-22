@@ -13,3 +13,6 @@ First iteration of the app. Still currently in progress, and is not the final bu
 
 This is the second iteration, after fixing bugs and adding much more functionalities to the app.
 !["myEmptor app version two"](/src/images/myEmptor-V2.png)
+
+Third iteration, after I made some updates to fix bugs and refresh the design.
+!["myEmptor app version three"](/src/images/myEmptor-V3.png)
