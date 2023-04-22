@@ -280,7 +280,8 @@ restoreBtn?.addEventListener("click", (e) => {
     console.log("clicked");    
     const emptorBackup = JSON.parse(localStorage.getItem("myEmptorBackup"));
     localStorage.setItem("myEmptor", JSON.stringify(emptorBackup))
-    displayClientData()
+    //displayClientData()
+    location.reload();
     console.log(emptorBackup);    
 })
 

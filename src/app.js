@@ -236,7 +236,8 @@ restoreBtn === null || restoreBtn === void 0 ? void 0 : restoreBtn.addEventListe
     console.log("clicked");
     var emptorBackup = JSON.parse(localStorage.getItem("myEmptorBackup"));
     localStorage.setItem("myEmptor", JSON.stringify(emptorBackup));
-    displayClientData();
+    //displayClientData()
+    location.reload();
     console.log(emptorBackup);
 });
 // TEST FETCH CALL 
