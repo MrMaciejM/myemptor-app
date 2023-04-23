@@ -1,18 +1,32 @@
 # myEmptor App
 
-## Description
+## Table of Contents
 
-I have been tasked with creating a financial/client tool application to keep a track of all the clients and various information.
+- [Description](#Description)
+- [Screenshots](#Screenshots)
+- [Deployed App](#Deployed)
 
-This README.md will be updated further once the app is complete.
+## Description <a name="Description"></a>
 
-## Screenshots
+I have been tasked with creating a finance and client tracking application to help keep track of all the clients and various information, such as start dates, phone numbers, payment amount, banks, etc.
 
-First iteration of the app. Still currently in progress, and is not the final build. There's more functions planned for this app.
+Then, as I was building out the app, I foresaw further potential to implement additional features that could really make the app robust. Features such as sorting, backups, date of backup, and restoration should the need arise.
+
+It was a new challenge dealing with so many input fields (14 of them), and select field, hello TypeScript, and coming up with a clean solution to display all of that data reasonably and concisely.
+
+Building this project has given me a deeper insight into TypeScript, and while I haven't used all of TypeScript's features, the potential was easier to see and understand.
+
+## Screenshots <a name="Screenshots"></a>
+
+First iteration of the app. This was in the early build stages, prior to any extra features of the app.
 !["myEmptor app version one"](/src/images/myEmptor-V1.png)
 
 This is the second iteration, after fixing bugs and adding much more functionalities to the app.
 !["myEmptor app version two"](/src/images/myEmptor-V2.png)
 
-Third iteration, after I made some updates to fix bugs and refresh the design.
+Third iteration, after I made some updates to fix major bugs and refresh the design making the app ready for use.
 !["myEmptor app version three"](/src/images/myEmptor-V3.png)
+
+## Deployed App <a name="Deployed"></a>
+
+https://mrmaciejm.github.io/myemptor-app/
