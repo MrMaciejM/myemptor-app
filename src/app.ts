@@ -30,8 +30,7 @@ if (!getStorage) {
 // 2. Display saved information/client data
 function displayClientData() {
     let storageData = JSON.parse(localStorage.getItem("myEmptor")!) || []; 
-    console.log(storageData);
-    
+    //console.log(storageData);    
     displayData.innerHTML = "";   
     storageData.forEach(item => {     
         displayData.insertAdjacentHTML("beforeend", `

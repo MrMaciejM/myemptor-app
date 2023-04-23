@@ -24,7 +24,7 @@ if (!getStorage) {
 // 2. Display saved information/client data
 function displayClientData() {
     var storageData = JSON.parse(localStorage.getItem("myEmptor")) || [];
-    console.log(storageData);
+    //console.log(storageData);    
     displayData.innerHTML = "";
     storageData.forEach(function (item) {
         displayData.insertAdjacentHTML("beforeend", "\n            <div class=\"displayRow\">\n            <p>".concat(item.Name, "</p>            \n            <p>").concat(item.Surname, "</p>            \n            <p>").concat(item.Phone, "</p>            \n            <p>").concat(item.Email, "</p>            \n            <p>").concat(item.AppDate, "</p>            \n            <p>").concat(item.Choice, "</p>            \n            <p>").concat(item.StartDate, "</p>            \n            <p>").concat(item.CurrStatus, "</p>            \n            <p>").concat(item.Bank, "</p>            \n            <p>").concat(item.Sum, "</p>            \n            <p>").concat(item.RateExp, "</p>            \n            <p>").concat(item.FirmIncome, "</p>            \n            <p>").concat(item.MyPayment, "</p>            \n            <p>").concat(item.MyNotes, "</p>            \n            <p>").concat(item.SummaryActi, "</p>\n            <button class=\"delClientBtn\" id=").concat(item.id, ">X</button>\n            </div>\n        "));
