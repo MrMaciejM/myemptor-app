@@ -107,7 +107,8 @@ sortOptions.addEventListener("click", function (e) {
             FirmIncome: item.FirmIncome,
             MyPayment: item.MyPayment,
             MyNotes: item.MyNotes,
-            SummaryActi: item.SummaryActi
+            SummaryActi: item.SummaryActi,
+            id: item.id
         };
     });
     // sorting logic 

@@ -140,7 +140,8 @@ const dataArray = getStorage.map(item => {
         FirmIncome: item.FirmIncome,
         MyPayment: item.MyPayment,
         MyNotes: item.MyNotes,
-        SummaryActi: item.SummaryActi
+        SummaryActi: item.SummaryActi,
+        id: item.id
     }
 })
       // sorting logic 
