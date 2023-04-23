@@ -147,63 +147,63 @@ const dataArray = getStorage.map(item => {
       // sorting logic 
       switch(selectedOption) {
         case "name-AZ":
-            dataArray.sort((a, b) => a.Name.localeCompare(b.Name));
+            dataArray.sort((a: string, b: string) => a.Name.localeCompare(b.Name));
             localStorage.setItem("myEmptor", JSON.stringify(dataArray));
             displayClientData();
             break;
         case "name-ZA":
             //displayRows.forEach(row => row.remove());
-            dataArray.sort((a, b) => b.Name.localeCompare(a.Name));
+            dataArray.sort((a: string, b: string) => b.Name.localeCompare(a.Name));
             localStorage.setItem("myEmptor", JSON.stringify(dataArray));
             displayClientData();
             break;
         case "surname-AZ":
-            dataArray.sort((a, b) => a.Surname.localeCompare(b.Surname));
+            dataArray.sort((a: string, b: string) => a.Surname.localeCompare(b.Surname));
             localStorage.setItem("myEmptor", JSON.stringify(dataArray));
             displayClientData();
             break;
         case "surname-ZA":
-            dataArray.sort((a, b) => b.Surname.localeCompare(a.Surname));
+            dataArray.sort((a: string, b: string) => b.Surname.localeCompare(a.Surname));
             localStorage.setItem("myEmptor", JSON.stringify(dataArray));
             displayClientData();
             break;
         case "applicationDateNew":
-            dataArray.sort((a, b) => Date.parse(b.AppDate) - Date.parse(a.AppDate));
+            dataArray.sort((a: Date, b: Date) => Date.parse(b.AppDate) - Date.parse(a.AppDate));
             localStorage.setItem("myEmptor", JSON.stringify(dataArray));
             displayClientData();
             break;
         case "applicationDateOld":
-            dataArray.sort((a, b) => Date.parse(a.AppDate) - Date.parse(b.AppDate));
+            dataArray.sort((a: Date, b: Date) => Date.parse(a.AppDate) - Date.parse(b.AppDate));
             localStorage.setItem("myEmptor", JSON.stringify(dataArray));
             displayClientData();
             break;
         case "bank":
-            dataArray.sort((a, b) => b.Bank.localeCompare(a.Bank));
+            dataArray.sort((a: string, b: string) => b.Bank.localeCompare(a.Bank));
             localStorage.setItem("myEmptor", JSON.stringify(dataArray));
             displayClientData();
             break;
         case "sum":
-            dataArray.sort((a, b) => parseFloat(b.Sum) - parseFloat(a.Sum));
+            dataArray.sort((a: number, b: number) => parseFloat(b.Sum) - parseFloat(a.Sum));
             localStorage.setItem("myEmptor", JSON.stringify(dataArray));
             displayClientData();
             break;
         case "firmIncomeLow":
-            dataArray.sort((a, b) => parseFloat(a.FirmIncome) - parseFloat(b.FirmIncome));
+            dataArray.sort((a: number, b: number) => parseFloat(a.FirmIncome) - parseFloat(b.FirmIncome));
             localStorage.setItem("myEmptor", JSON.stringify(dataArray));
             displayClientData();
             break;
         case "firmIncomeHigh":
-            dataArray.sort((a, b) => parseFloat(b.FirmIncome) - parseFloat(a.FirmIncome));
+            dataArray.sort((a: number, b: number) => parseFloat(b.FirmIncome) - parseFloat(a.FirmIncome));
             localStorage.setItem("myEmptor", JSON.stringify(dataArray));
             displayClientData();
             break;
         case "myPaymentLow":
-            dataArray.sort((a, b) => parseFloat(a.MyPayment) - parseFloat(b.MyPayment));
+            dataArray.sort((a: number, b: number) => parseFloat(a.MyPayment) - parseFloat(b.MyPayment));
             localStorage.setItem("myEmptor", JSON.stringify(dataArray));
             displayClientData();
             break;
         case "myPaymentHigh":
-            dataArray.sort((a, b) => parseFloat(b.MyPayment) - parseFloat(a.MyPayment));
+            dataArray.sort((a: number, b: number) => parseFloat(b.MyPayment) - parseFloat(a.MyPayment));
             localStorage.setItem("myEmptor", JSON.stringify(dataArray));
             displayClientData();
             break;
