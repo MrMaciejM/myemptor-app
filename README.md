@@ -18,14 +18,14 @@ Building this project has given me a deeper insight into TypeScript, and while I
 
 ## Screenshots
 
+Third iteration, after I made some updates to fix major bugs and refresh the design making the app ready for use.
+!["myEmptor app version three"](/src/images/myEmptor-V3.png)
+
 First iteration of the app. This was in the early build stages, prior to any extra features of the app.
 !["myEmptor app version one"](/src/images/myEmptor-V1.png)
 
 This is the second iteration, after fixing bugs and adding much more functionalities to the app.
 !["myEmptor app version two"](/src/images/myEmptor-V2.png)
-
-Third iteration, after I made some updates to fix major bugs and refresh the design making the app ready for use.
-!["myEmptor app version three"](/src/images/myEmptor-V3.png)
 
 ## Deployed App
 
